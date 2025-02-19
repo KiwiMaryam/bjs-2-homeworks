@@ -18,7 +18,7 @@ Student.prototype.addMarks = function (...marksToAdd) {
 
 Student.prototype.getAverage = function () {
     if (!this.marks || this.marks.length === 0) {
-        return 0; // Если оценрк нет, возвращаем 0
+        return 0; // Если оценрк нeт, возвращаем 0
     }
     const sum = this.marks.reduce((acc, mark) => acc + mark, 0); // Суммируем оценки
     return sum / this.marks.length; // Среднее значение
