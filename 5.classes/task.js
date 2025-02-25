@@ -67,7 +67,7 @@ class DetectiveBook extends Book {
 }
 
 const sherlock = new PrintEditionItem(
-    "Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе",
+    'Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе',
     2019,
     1008
 );
@@ -78,8 +78,8 @@ sherlock.fix();
 console.log(sherlock.state); // 100
 
 const picknick = new FantasticBook(
-    "Аркадий и Борис Стругацкие",
-    "Пикник на обочине",
+    'Аркадий и Борис Стругацкие',
+    'Пикник на обочине',
     1972,
     168
 );
@@ -120,39 +120,39 @@ class Library {
 }
 
 // Пример использования
-const library = new Library("Библиотека имени Ленина");
+const library = new Library('Библиотека имени Ленина');
 
 library.addBook(
     new DetectiveBook(
-        "Артур Конан Дойл",
-        "Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе",
+        'Артур Конан Дойл',
+        'Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе',
         2019,
         1008
     )
 );
 library.addBook(
     new FantasticBook(
-        "Аркадий и Борис Стругацкие",
-        "Пикник на обочине",
+        'Аркадий и Борис Стругацкие',
+        'Пикник на обочине',
         1972,
         168
     )
 );
-library.addBook(new NovelBook("Герберт Уэллс", "Машина времени", 1895, 138));
-library.addBook(new Magazine("Мурзилка", 1924, 60));
+library.addBook(new NovelBook('Герберт Уэллс', 'Машина времени', 1895, 138));
+library.addBook(new Magazine('Мурзилка', 1924, 60));
 
-console.log(library.findBookBy("name", "Властелин колец")); // null
-console.log(library.findBookBy("releaseDate", 1924).name); // "Мурзилка"
+console.log(library.findBookBy('name', 'Властелин колец')); // null
+console.log(library.findBookBy('releaseDate', 1924).name); // "Мурзилка"
 
-console.log("Количество книг до выдачи: " + library.books.length); // 4
-library.giveBookByName("Машина времени");
-console.log("Количество книг после выдачи: " + library.books.length); // 3
+console.log('Количество книг до выдачи: ' + library.books.length); // 4
+library.giveBookByName('Машина времени');
+console.log('Количество книг после выдачи: ' + library.books.length); // 3
 
 // Тестирование
-const damagedBook = library.giveBookByName("Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе");
+const damagedBook = library.giveBookByName('Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе');
 damagedBook.state = 10;
 console.log(damagedBook.state);
 damagedBook.fix();
 console.log(damagedBook.state);
 library.addBook(damagedBook);
-console.log("Количество книг после добавления восстановленной книги: " + library.books.length);
+console.log('Количество книг после добавления восстановленной книги: ' + library.books.length);
