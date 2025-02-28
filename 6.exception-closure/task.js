@@ -1,7 +1,7 @@
 // Задача №1
 console.log('Задача №1');
 function parseCount(value) {
-    const result = Number(value);
+    const result = Number.parseFloat(value);
     if (isNaN(result)) {
         throw new Error('Невалидное значение');
     }
