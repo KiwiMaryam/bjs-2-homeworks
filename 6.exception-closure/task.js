@@ -11,14 +11,14 @@ function parseCount(value) {
 function validateCount(value) {
     try {
         return parseCount(value);
-    } catch (error) {
-        return { error: error.message };
+    } catch (Error) {
+        return Error.message;
     }
 }
 
 // Примеры использования
-console.log(validateCount('10'));
-console.log(validateCount('abc'));
+console.log(validateCount('10')); //10
+console.log(validateCount('abc'));  // Невалидное значение
 
 // Задача №2
 
