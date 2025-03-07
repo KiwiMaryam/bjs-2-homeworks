@@ -5,16 +5,14 @@ class AlarmClock {
     }
 
     addClock(time, callback) {
-        // Проверяем наличие обязательных аргументов
         if (!time || !callback) {
             throw new Error('Отсутствуют обязательные аргументы');
         }
-        // Проверяем, есть ли уже звонок с таким временем
         if (this.alarmCollection.some(alarm => alarm.time === time)) {
             console.warn('Уже присутствует звонок на это же время');
             return;
         }
-        // Добавляем новый звонок в коллекцию
+        // Добавляем новый звонок
         this.alarmCollection.push({
             callback,
             time,
@@ -23,12 +21,10 @@ class AlarmClock {
     }
 
     removeClock(time) {
-        // Удаляем звонок по времени
         this.alarmCollection = this.alarmCollection.filter(alarm => alarm.time !== time);
     }
 
     getCurrentFormattedTime() {
-        // Получаем текущее время в формате HH:MM
         const date = new Date();
         return `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
     }
@@ -38,35 +34,31 @@ class AlarmClock {
         if (this.intervalId) {
             return;
         }
-        // Запускаем интервал для проверки звонков каждую секунду
         this.intervalId = setInterval(() => {
             this.alarmCollection.forEach(alarm => {
                 // Проверяем, совпадает ли текущее время с временем звонка
                 if (alarm.time === this.getCurrentFormattedTime() && alarm.canCall) {
-                    alarm.canCall = false; // Запрет на повторный вызов
-                    alarm.callback(); // Вызываем колбек
+                    alarm.canCall = false;
+                    alarm.callback();
                 }
             });
         }, 1000);
     }
 
     stop() {
-        // Останавливаем интервал
+        // Остановка интервала
         clearInterval(this.intervalId);
-        this.intervalId = null; // Сбрасываем ID таймера
+        this.intervalId = null;
     }
 
     resetAllCalls() {
-        // Сбрасываем возможность запусков всех звонков
         this.alarmCollection.forEach(alarm => {
             alarm.canCall = true;
         });
     }
 
     clearAlarms() {
-        // Останавливаем будильник
         this.stop();
-        // Очищаем все звонки
         this.alarmCollection = [];
     }
 }
@@ -75,6 +67,3 @@ class AlarmClock {
 const alarmClock = new AlarmClock();
 alarmClock.addClock('10:00', () => console.log('Пора вставать!'));
 alarmClock.start();
-
-// Чтобы очистить все звонки
- alarmClock.clearAlarms();
