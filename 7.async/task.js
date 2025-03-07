@@ -30,7 +30,7 @@ class AlarmClock {
     }
 
     start() {
-        // Проверяем, запущен ли уже интервал
+        // Проверяем, запущен ли интервал
         if (this.intervalId) {
             return;
         }
