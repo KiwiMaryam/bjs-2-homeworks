@@ -11,7 +11,7 @@ class AlarmClock {
         this.alarmCollection.push({
             callback,
             time,
-            canCall: true // Изначально звонок может быть вызван
+            canCall: true
         });
     }
 
@@ -25,13 +25,11 @@ class AlarmClock {
     }
 
     start() {
-        // Проверяем, запущен ли интервал
         if (this.intervalId) {
             return;
         }
         this.intervalId = setInterval(() => {
             this.alarmCollection.forEach(alarm => {
-                // Проверяем, совпадает ли текущее время с временем звонка
                 if (alarm.time === this.getCurrentFormattedTime() && alarm.canCall) {
                     alarm.canCall = false;
                     alarm.callback();
@@ -41,7 +39,6 @@ class AlarmClock {
     }
 
     stop() {
-        // Остановка интервала
         clearInterval(this.intervalId);
         this.intervalId = null;
     }
